@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="tank" class="com.madf.proxy.spring.v1.Tank"/>
+    <bean id="timeProxy" class="com.madf.proxy.spring.v1.TimeProxy"/>
+
+    <!--切面配置-->
+    <aop:config>
+        <!--指定1切入的类 timeProxy-->
+        <aop:aspect id="time" ref="timeProxy">
+            <!--定义切点-->
+            <aop:pointcut id="onmove" expression="execution(void com.madf.proxy.spring.v1.Tank.move())"/>
+            <!--方法执行前-->
+            <aop:before method="before" pointcut-ref="onmove"/>
+            <!--方法执行后-->
+            <aop:after method="after" pointcut-ref="onmove"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
