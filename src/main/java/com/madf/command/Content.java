@@ -1,0 +1,6 @@
+package com.madf.command;
+
+public class Content {
+    String msg = "hello everybody ";
+
+}
