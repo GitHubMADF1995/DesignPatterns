@@ -10,6 +10,7 @@ package com.madf.singleton;
  */
 public class Mgr06 {
     private static volatile Mgr06 INSTANCE;//如果不加volatile，会在没有初始化时就会返回这个INSTANCE实例
+    //加了volatile可以防止指令重排，在线程间可见
 
     private Mgr06() {}
 
